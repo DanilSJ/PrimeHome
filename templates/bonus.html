@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="{% url "index" %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Бонус за отзывы</h1>
+        </header>
+
+        <main class="page-content">
+            <div class="bonus-card">
+                <div class="bonus-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h2>Получите бонус</h2>
+                <a href="https://t.me/Dmitriy_PH86" class="bonus-btn" target="_blank" rel="noopener noreferrer">Получить бонус</a>
+            </div>
+{% comment %} 
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Купите товар</h3>
+                        <p>Приобретите любую технику в нашем магазине</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Используйте 7 дней</h3>
+                        <p>Протестируйте технику в течение недели</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Оставьте отзыв</h3>
+                        <p>Напишите честный отзыв с фото</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Получите бонус</h3>
+                        <p>Скидка 15% на следующую покупку</p>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+{% comment %} 
+            <div class="contact-form">
+                <h3>Отправить отзыв</h3>
+                <form>
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Модель техники" required>
+                    <textarea placeholder="Ваш отзыв" rows="4" required></textarea>
+                    <button type="submit">Отправить отзыв</button>
+                </form>
+            </div> {% endcomment %}
+        </main>
+    </div>
+</body>
+</html>

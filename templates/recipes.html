@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="{% url "index" %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Кулинарные рецепты</h1>
+        </header>
+
+        <main class="page-content">
+            <div class="recipes-grid">
+                {% for el in recipes %}
+                    <div class="recipe-card" data-category="blender">
+                        <div class="recipe-image">
+                            <img src="{{ el.image.url }}" alt="{{ el.name }}" loading="lazy" width="300" height="200">
+                        </div>
+                        <div class="recipe-content">
+                            <h3>{{ el.name }}</h3>
+                            <p>{{ el.description }}</p> 
+                            {% if el.download_link %}
+                                <a href="{{ el.download_link }}" class="download-btn" style="text-decoration: none; color: black;">
+                                    Скачать
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="recipe-tips">
+                <h3>Советы от шеф-повара</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-thermometer-half"></i>
+                        <h4>Температурный режим</h4>
+                        <p>Соблюдайте рекомендованную температуру для лучшего результата</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-balance-scale"></i>
+                        <h4>Точные пропорции</h4>
+                        <p>Используйте кухонные весы для точного измерения ингредиентов</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-leaf"></i>
+                        <h4>Свежие продукты</h4>
+                        <p>Выбирайте только свежие и качественные ингредиенты</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Простая фильтрация рецептов
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                // Добавляем активный класс к нажатой кнопке
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                const recipes = document.querySelectorAll('.recipe-card');
+                
+                recipes.forEach(recipe => {
+                    if (category === 'all' || recipe.dataset.category === category) {
+                        recipe.style.display = 'block';
+                    } else {
+                        recipe.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="{% url "index" %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Техника для кухни</h1>
+        </header>
+
+        <main class="page-content">
+            <div class="product-grid">
+                {% for el in cooking_appliances %}
+                    <a href="{% url "productCooking" el.pk %}" class="product-link">
+                        <div class="product-card">
+                            <img src="{{ el.image.url }}" alt="{{ el.name }}" class="product-img">
+                            <h3>{{ el.name }}</h3>
+                            <p>{{ el.description }}</p>
+                            {% if el.discount %}
+                                <div class="price">Цена {{ el.discount }} ₽</div>
+                            {% else %}
+                                <div class="price">Цена {{ el.price }} ₽</div>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="features">
+                <h3>Почему выбирают нас?</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Гарантия до 3 лет</li>
+                    <li><i class="fas fa-check"></i> Бесплатная доставка</li>
+                    <li><i class="fas fa-check"></i> Сервисное обслуживание</li>
+                    <li><i class="fas fa-check"></i> Обмен в течение 14 дней</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="profile">    
+                <img src="{{ info.logo.url }}" alt="Логотип {{ info.name }}" width="64" height="64" loading="lazy" decoding="async" class="logo-img">
+            </div>
+        </header>
+
+        <main class="links-container">
+            <a href="{% url "bonus" %}" class="link-card">
+                <div class="icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="content">
+                    <h3>Бонус за отзывы</h3>
+                    <p>Получите скидку за ваш отзыв</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="{% url "cleaning" %}" class="link-card">
+                <div class="icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <div class="content">
+                    <h3>Техника для уборки</h3>
+                    <p>Пылесосы, моющие средства и аксессуары</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="{% url "kitchen" %}" class="link-card">
+                <div class="icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="content">
+                    <h3>Техника для кухни</h3>
+                    <p>Блендеры, микроволновки, кофемашины</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="{% url "support" %}" class="link-card">
+                <div class="icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="content">
+                    <h3>Служба поддержки</h3>
+                    <p>Помощь и консультации 24/7</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="{% url "instructions" %}" class="link-card">
+                <div class="icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="content">
+                    <h3>Инструкция к технике</h3>
+                    <p>Руководства по эксплуатации</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+
+            <a href="{% url "recipes" %}" class="link-card">
+                <div class="icon">
+                    <i class="fas fa-cookie-bite"></i>
+                </div>
+                <div class="content">
+                    <h3>Кулинарные рецепты</h3>
+                    <p>Вкусные рецепты для вашей техники</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 {{ info.name }}. Все права защищены.</p>
+        </footer>
+    </div>
+</body>
+</html>

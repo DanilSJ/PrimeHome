@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="{% url "index" %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Служба поддержки</h1>
+        </header>
+
+        <main class="page-content">
+            <div class="support-info">
+                <div class="support-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Время работы</h3>
+                    <p>{{ support.working_time }}</p>
+                </div>
+                <div class="support-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>{{ support.phone }}</p>
+                </div>
+                <div class="support-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>{{ support.email }}</p>
+                </div>
+            </div>
+
+            <div class="contact-methods">
+                <h3>Способы связи</h3>
+                <div class="method-list">
+                    <a href="tel:{{ support.phone }}" class="method-item">
+                        <i class="fas fa-phone"></i>
+                        <span>Позвонить</span>
+                    </a>
+                    <a href="{{ support.whatsapp }}" class="method-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="{{ support.telegram }}" class="method-item">
+                        <i class="fab fa-telegram"></i>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="mailto:{{ support.email }}" class="method-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h3>Частые вопросы</h3>
+                {% for el in Supportfaq %}
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <i class="fas fa-question-circle"></i>
+                            <span>{{ el.name }}</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>{{ el.description }}</p>
+                        </div>
+                    </div>              
+                {% endfor %}
+            </div>
+
+            <div class="contact-form">
+                <h3>Написать нам</h3>
+                {% if success %}
+                    <div class="success-message">Ваше сообщение отправлено!</div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Отправить сообщение</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

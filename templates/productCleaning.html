@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="{% url "index" %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Техника для уборки</h1>
+        </header>
+
+        <main class="page-content">
+
+            <div class="recipes-grid">
+                <div class="recipe-card" data-category="blender">
+                    <div class="recipe-image">
+                        <img src="{{ cleaning_appliances.image.url }}" alt="">
+                    </div>
+                    <div class="recipe-content">
+                        <h3>{{ cleaning_appliances.name }}</h3>
+                        <h4>Описание:</h4>
+                        <p>{{ cleaning_appliances.description }}</p>
+                        <h4>Характеристики</h4>
+                        <p>{{ cleaning_appliances.features }}</p>
+                        
+                        <div class="shop-buttons">
+                            <a href="{{ cleaning_appliances.ozon_link }}" target="_blank" class="shop-btn ozon-btn">Ozon</a>
+                            <a href="{{ cleaning_appliances.wildberries_link }}" target="_blank" class="shop-btn wb-btn">Wildberries</a>
+                        </div>
+                        <div class="price-blocks">
+                            {% if cleaning_appliances.discount %}
+                                <div class="old-price">Старая цена: <span>{{ cleaning_appliances.price }} ₽</span></div>
+                                <div class="new-price">Цена со скидкой: <span>{{ cleaning_appliances.discount}} ₽</span></div>
+                            {% else %}
+                            <div class="new-price">Цена: <span>{{ cleaning_appliances.price }} ₽</span></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+        </main>
+    </div>
+</body>
+</html>

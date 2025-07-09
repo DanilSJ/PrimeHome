@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя Техника</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <a href="{% url "index" %}" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Инструкции к технике</h1>
+        </header>
+
+        <main class="page-content">
+     
+
+            <div class="instruction-categories">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Кухонная техника</h3>
+                    <div class="instruction-list">
+                        {% for el in cooking_appliances %}
+                            {% if el.pdf %}
+                                <a href="{{ el.pdf.url }}" class="instruction-item" download>
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>{{ el.name }}</span>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <h3>Техника для уборки</h3>
+                    <div class="instruction-list">
+                        {% for el in cleaning_appliances %}
+                            {% if el.pdf %}
+                                <a href="{{ el.pdf.url }}" class="instruction-item" download>
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>{{ el.name }}</span>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <h3>Нужна помощь?</h3>
+                <div class="help-options">
+                   
+                    <div class="help-card">
+                        <i class="fas fa-headset"></i>
+                        <h4>Онлайн консультация</h4>
+                        <p>Получите помощь специалиста в режиме реального времени</p>
+                        <a href="{% url "support" %}" class="help-link">Связаться</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tips-section">
+                <h3>Полезные советы</h3>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <h4>Регулярное обслуживание</h4>
+                            <p>Очищайте фильтры и меняйте расходники согласно инструкции</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4>Безопасность</h4>
+                            <p>Всегда отключайте технику от сети перед чисткой</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-tools"></i>
+                        <div>
+                            <h4>Правильное хранение</h4>
+                            <p>Храните технику в сухом месте при комнатной температуре</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
